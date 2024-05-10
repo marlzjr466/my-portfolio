@@ -14,5 +14,8 @@ export default defineConfig({
       '@modals': fileURLToPath(new URL('./src/modals', import.meta.url)),
       '@constants': fileURLToPath(new URL('./src/constants', import.meta.url))
     }
+  },
+  server: {
+    port: 4000
   }
 })
