@@ -1,0 +1,42 @@
+$v1: calc(max(7vw, 9vh));
+
+.hexa-bg {
+  @extend .container;
+
+  position: fixed;
+  overflow: hidden;
+
+  .cursor {
+    position: absolute;
+    width: calc($v1 * 3.5);
+    height: calc($v1 * 3.5);
+    border-radius: 50%;
+    animation: hueRotate 2s linear infinite;
+    transform: translate(-50%, -50%);
+  }
+
+  .row {
+    display: inline-flex;;
+    margin-top: calc($v1 * -0.32);
+    margin-left: calc($v1 * -0.5);
+    pointer-events: none;
+
+    &:nth-child(even) {
+      margin-left: calc($v1 * 0.02);
+    }
+
+    .hexagon {
+      position: relative;
+      width: $v1;
+      height: calc($v1 * 1.1);
+      margin: calc($v1 * 0.04) calc($v1 * 0.02);
+      clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+      background: rgba(#15031d, 1);
+    }
+  }
+}
+
+body:hover .cursor {
+  background: radial-gradient(circle, rgb(0, 255, 0) 0%, rgba(0, 255, 0, 0) 70%);
+  visibility: visible;
+}
