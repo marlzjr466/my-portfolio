@@ -20,7 +20,7 @@ function HexaBG () {
     const html = []
 
     for (let i = 0; i < count; i++) {
-      html.push(<div key={i} className="hexagon"></div>)
+      html.push(<div key={i} className="hexa-bg__row--hexagon"></div>)
     }
 
     return html
@@ -29,21 +29,20 @@ function HexaBG () {
   return (
     <>
       <div className="hexa-bg">
-        <div className="cursor" ref={cursor}></div>
+        <div className="hexa-bg__cursor" ref={cursor}></div>
         {
           Array(20).fill(20)
             .map((count, i) => {
               return (
                 <div
                   key={i}
-                  className="row"
+                  className="hexa-bg__row"
                 >
                   { generateElement(count) }
                 </div>
               )
             })
         }
-        <div className="on-top"></div>
       </div>
     </>
   )

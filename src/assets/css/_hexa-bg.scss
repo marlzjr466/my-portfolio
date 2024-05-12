@@ -1,4 +1,4 @@
-$v1: calc(max(7vw, 9vh));
+$v1: calc(max(5vw, 7vh));
 
 .hexa-bg {
   @extend .container;
@@ -6,16 +6,16 @@ $v1: calc(max(7vw, 9vh));
   position: fixed;
   overflow: hidden;
 
-  .cursor {
+  &__cursor {
     position: absolute;
-    width: calc($v1 * 3.5);
-    height: calc($v1 * 3.5);
+    width: calc($v1 * 4);
+    height: calc($v1 * 4);
     border-radius: 50%;
     animation: hueRotate 2s linear infinite;
     transform: translate(-50%, -50%);
   }
 
-  .row {
+  &__row {
     display: inline-flex;;
     margin-top: calc($v1 * -0.32);
     margin-left: calc($v1 * -0.5);
@@ -25,18 +25,18 @@ $v1: calc(max(7vw, 9vh));
       margin-left: calc($v1 * 0.02);
     }
 
-    .hexagon {
+    &--hexagon {
       position: relative;
       width: $v1;
       height: calc($v1 * 1.1);
       margin: calc($v1 * 0.04) calc($v1 * 0.02);
       clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-      background: rgba(#15031d, 1);
+      background: rgba(#000, 1);
     }
   }
 }
 
-body:hover .cursor {
+body:hover .hexa-bg__cursor {
   background: radial-gradient(circle, rgb(0, 255, 0) 0%, rgba(0, 255, 0, 0) 70%);
   visibility: visible;
 }

@@ -12,6 +12,22 @@
   font-family: "Digital";
   src: local("Digital"), url(../fonts/Digital.ttf) format("truetype");
 }
+@font-face {
+  font-family: "SedanSC_Regular";
+  src: local("SedanSC-Regular"), url(../fonts/SedanSC-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Sora";
+  src: local("Sora"), url(../fonts/Sora.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Khand";
+  src: local("Khand"), url(../fonts/Khand.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Honk";
+  src: local("Honk"), url(../fonts/Honk.ttf) format("truetype");
+}
 html {
   font-size: 100%;
   box-sizing: border-box;
@@ -42,16 +58,16 @@ ul, ol {
   list-style: none;
 }
 
-.flex, .theme-default {
+.flex, .theme-default .hero__info, .theme-default .hero, .theme-default .navigation__indicator, .theme-default .navigation__item, .theme-default .navigation, .theme-default {
   display: flex;
 }
 .flex-jc-sb {
   justify-content: space-between;
 }
-.flex-jc-c {
+.flex-jc-c, .theme-default .navigation__item {
   justify-content: center;
 }
-.flex-ai-c {
+.flex-ai-c, .theme-default .navigation__item {
   align-items: center;
 }
 .flex-ai-sb {
@@ -63,7 +79,7 @@ ul, ol {
 .flex-ai-fe {
   align-items: flex-end;
 }
-.flex-column {
+.flex-column, .theme-default .hero__info, .theme-default .navigation__indicator, .theme-default {
   flex-direction: column;
 }
 .flex-end {
@@ -73,7 +89,7 @@ ul, ol {
 .main-container {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to top, #000, #0f0114);
+  background: #000;
 }
 
 .container, .theme-default, .hexa-bg {
@@ -81,7 +97,7 @@ ul, ol {
   height: 100%;
 }
 
-.full-width {
+.full-width, .theme-default .hero, .theme-default .navigation {
   width: 100%;
 }
 
@@ -102,8 +118,38 @@ ul, ol {
   font-family: Digital;
 }
 
-.bold {
+.bold, .theme-default .navigation__btn button, .theme-default .navigation__item.active, .theme-default .navigation__item:hover, .theme-default .navigation__item:first-child span i, .theme-default .navigation__item:first-child span, .theme-default .navigation__item:first-child {
   font-weight: 600;
+}
+
+.logo-font, .theme-default .navigation__item:first-child {
+  font-family: "SedanSC_Regular";
+}
+
+.gradient-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background: linear-gradient(to right, rgb(0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(to bottom, #1216fa, #bc48ff 60%);
+}
+
+.image-bg {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 85vh;
+  width: 70%;
+  background-image: url(../images/ai.png);
+  box-shadow: 0 0 40px 20px #000 inset;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.5;
+}
+
+.glitch-wrapper {
+  width: 100%;
+  height: 100%;
 }
 
 @keyframes jackInTheBox {
@@ -157,42 +203,436 @@ ul, ol {
     filter: hue-rotate(360deg);
   }
 }
+@keyframes noise-before {
+  0% {
+    clip: rect(61px, 9999px, 52px, 0);
+  }
+  5% {
+    clip: rect(33px, 9999px, 144px, 0);
+  }
+  10% {
+    clip: rect(121px, 9999px, 115px, 0);
+  }
+  15% {
+    clip: rect(144px, 9999px, 162px, 0);
+  }
+  20% {
+    clip: rect(62px, 9999px, 180px, 0);
+  }
+  25% {
+    clip: rect(34px, 9999px, 42px, 0);
+  }
+  30% {
+    clip: rect(147px, 9999px, 179px, 0);
+  }
+  35% {
+    clip: rect(99px, 9999px, 63px, 0);
+  }
+  40% {
+    clip: rect(188px, 9999px, 122px, 0);
+  }
+  45% {
+    clip: rect(154px, 9999px, 14px, 0);
+  }
+  50% {
+    clip: rect(63px, 9999px, 37px, 0);
+  }
+  55% {
+    clip: rect(161px, 9999px, 147px, 0);
+  }
+  60% {
+    clip: rect(109px, 9999px, 175px, 0);
+  }
+  65% {
+    clip: rect(157px, 9999px, 88px, 0);
+  }
+  70% {
+    clip: rect(173px, 9999px, 131px, 0);
+  }
+  75% {
+    clip: rect(62px, 9999px, 70px, 0);
+  }
+  80% {
+    clip: rect(24px, 9999px, 153px, 0);
+  }
+  85% {
+    clip: rect(138px, 9999px, 40px, 0);
+  }
+  90% {
+    clip: rect(79px, 9999px, 136px, 0);
+  }
+  95% {
+    clip: rect(25px, 9999px, 34px, 0);
+  }
+  100% {
+    clip: rect(173px, 9999px, 166px, 0);
+  }
+}
+@keyframes noise-after {
+  0% {
+    clip: rect(26px, 9999px, 33px, 0);
+  }
+  5% {
+    clip: rect(140px, 9999px, 198px, 0);
+  }
+  10% {
+    clip: rect(184px, 9999px, 89px, 0);
+  }
+  15% {
+    clip: rect(121px, 9999px, 6px, 0);
+  }
+  20% {
+    clip: rect(181px, 9999px, 99px, 0);
+  }
+  25% {
+    clip: rect(154px, 9999px, 133px, 0);
+  }
+  30% {
+    clip: rect(134px, 9999px, 169px, 0);
+  }
+  35% {
+    clip: rect(26px, 9999px, 187px, 0);
+  }
+  40% {
+    clip: rect(147px, 9999px, 137px, 0);
+  }
+  45% {
+    clip: rect(31px, 9999px, 52px, 0);
+  }
+  50% {
+    clip: rect(191px, 9999px, 109px, 0);
+  }
+  55% {
+    clip: rect(74px, 9999px, 54px, 0);
+  }
+  60% {
+    clip: rect(145px, 9999px, 75px, 0);
+  }
+  65% {
+    clip: rect(153px, 9999px, 198px, 0);
+  }
+  70% {
+    clip: rect(99px, 9999px, 136px, 0);
+  }
+  75% {
+    clip: rect(118px, 9999px, 192px, 0);
+  }
+  80% {
+    clip: rect(1px, 9999px, 83px, 0);
+  }
+  85% {
+    clip: rect(145px, 9999px, 98px, 0);
+  }
+  90% {
+    clip: rect(121px, 9999px, 154px, 0);
+  }
+  95% {
+    clip: rect(156px, 9999px, 44px, 0);
+  }
+  100% {
+    clip: rect(67px, 9999px, 122px, 0);
+  }
+}
 .hexa-bg {
   position: fixed;
   overflow: hidden;
 }
-.hexa-bg .cursor {
+.hexa-bg__cursor {
   position: absolute;
-  width: calc(max(7vw, 9vh) * 3.5);
-  height: calc(max(7vw, 9vh) * 3.5);
+  width: calc(max(5vw, 7vh) * 4);
+  height: calc(max(5vw, 7vh) * 4);
   border-radius: 50%;
   animation: hueRotate 2s linear infinite;
   transform: translate(-50%, -50%);
 }
-.hexa-bg .row {
+.hexa-bg__row {
   display: inline-flex;
-  margin-top: calc(max(7vw, 9vh) * -0.32);
-  margin-left: calc(max(7vw, 9vh) * -0.5);
+  margin-top: calc(max(5vw, 7vh) * -0.32);
+  margin-left: calc(max(5vw, 7vh) * -0.5);
   pointer-events: none;
 }
-.hexa-bg .row:nth-child(even) {
-  margin-left: calc(max(7vw, 9vh) * 0.02);
+.hexa-bg__row:nth-child(even) {
+  margin-left: calc(max(5vw, 7vh) * 0.02);
 }
-.hexa-bg .row .hexagon {
+.hexa-bg__row--hexagon {
   position: relative;
-  width: max(7vw, 9vh);
-  height: calc(max(7vw, 9vh) * 1.1);
-  margin: calc(max(7vw, 9vh) * 0.04) calc(max(7vw, 9vh) * 0.02);
+  width: max(5vw, 7vh);
+  height: calc(max(5vw, 7vh) * 1.1);
+  margin: calc(max(5vw, 7vh) * 0.04) calc(max(5vw, 7vh) * 0.02);
   -webkit-clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
           clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-  background: #15031d;
+  background: black;
 }
 
-body:hover .cursor {
+body:hover .hexa-bg__cursor {
   background: radial-gradient(circle, rgb(0, 255, 0) 0%, rgba(0, 255, 0, 0) 70%);
   visibility: visible;
 }
 
 .theme-default {
   position: relative;
+  padding: 0 5%;
+  position: relative;
+}
+.theme-default .navigation {
+  gap: 30px;
+  padding: 10px;
+  border: 3px solid #18041F;
+  border-radius: 50px;
+  margin-top: 30px;
+  padding-left: 50px;
+  background: rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  position: relative;
+}
+.theme-default .navigation__item {
+  color: #fff;
+  padding: 0 15px;
+  height: 60px;
+  font-size: 13px;
+  gap: 5px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: capitalize;
+}
+.theme-default .navigation__item:not(:first-child) {
+  width: 100px;
+}
+.theme-default .navigation__item:first-child {
+  background: none;
+  gap: 5px;
+  font-size: 35px;
+  width: 250px;
+  color: #fff;
+  margin-right: 30px;
+}
+.theme-default .navigation__item:first-child span {
+  color: #9006B9;
+  font-size: 35px;
+}
+.theme-default .navigation__item:first-child span i {
+  pointer-events: none;
+}
+.theme-default .navigation__item:first-child .glitch-logo {
+  position: relative;
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  z-index: 1;
+  font-family: "Sora";
+}
+.theme-default .navigation__item:first-child .glitch-logo:before {
+  content: "Mario Jr";
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 100%;
+  color: #fff;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: noise-before 3s infinite linear alternate-reverse;
+}
+.theme-default .navigation__item:first-child .glitch-logo:after {
+  content: "Mario Jr";
+  position: absolute;
+  top: 0;
+  left: 2px;
+  width: 100%;
+  color: #fff;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: noise-after 2s infinite linear alternate-reverse;
+}
+.theme-default .navigation__item.active, .theme-default .navigation__item:hover {
+  color: #fff;
+}
+.theme-default .navigation__indicator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 50px;
+  z-index: -1;
+  left: 360px;
+  overflow: hidden;
+}
+.theme-default .navigation__indicator div {
+  width: 100px;
+  height: 2px;
+  transition: all 200ms ease-in-out;
+}
+.theme-default .navigation__indicator div:nth-child(1) {
+  background: hsl(280, 90%, 44%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(2) {
+  background: hsl(280, 90%, 43%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(3) {
+  background: hsl(280, 90%, 42%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(4) {
+  background: hsl(280, 90%, 41%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(5) {
+  background: hsl(280, 90%, 40%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(6) {
+  background: hsl(280, 90%, 39%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(7) {
+  background: hsl(280, 90%, 38%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(8) {
+  background: hsl(280, 90%, 37%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(9) {
+  background: hsl(280, 90%, 36%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(10) {
+  background: hsl(280, 90%, 35%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(11) {
+  background: hsl(280, 90%, 34%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(12) {
+  background: hsl(280, 90%, 33%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(13) {
+  background: hsl(280, 90%, 32%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(14) {
+  background: hsl(280, 90%, 31%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(15) {
+  background: hsl(280, 90%, 30%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(16) {
+  background: hsl(280, 90%, 29%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(17) {
+  background: hsl(280, 90%, 28%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(18) {
+  background: hsl(280, 90%, 27%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(19) {
+  background: hsl(280, 90%, 26%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(20) {
+  background: hsl(280, 90%, 25%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(21) {
+  background: hsl(280, 90%, 24%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(22) {
+  background: hsl(280, 90%, 23%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(23) {
+  background: hsl(280, 90%, 22%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(24) {
+  background: hsl(280, 90%, 21%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:nth-child(25) {
+  background: hsl(280, 90%, 20%);
+  opacity: 0.6;
+}
+.theme-default .navigation__indicator div:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.theme-default .navigation__btn {
+  flex: 1;
+  text-align: right;
+}
+.theme-default .navigation__btn button {
+  padding: 0 40px;
+  height: 100%;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 40px;
+  background: linear-gradient(to top, hsl(280, 90%, 20%), hsl(280, 90%, 44%));
+  opacity: 0.6;
+  color: #fff;
+  text-transform: uppercase;
+}
+.theme-default .navigation__btn button:hover {
+  opacity: 0.8;
+}
+.theme-default .hero {
+  padding: 50px 50px 0 50px;
+  position: relative;
+}
+.theme-default .hero__info {
+  padding: 80px 0 0 70px;
+  gap: 20px;
+}
+.theme-default .hero__info .position {
+  text-transform: uppercase;
+  color: #9c9c9c;
+  font-size: 35px;
+}
+.theme-default .hero__info .glitch {
+  position: relative;
+  font-size: 80px;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+  letter-spacing: 2px;
+  z-index: 1;
+  font-family: "Sora";
+}
+.theme-default .hero__info .glitch:before {
+  content: "Mario Jr \aLangomez";
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 100%;
+  color: #fff;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: noise-before 3s infinite linear alternate-reverse;
+}
+.theme-default .hero__info .glitch:after {
+  content: "Mario Jr \aLangomez";
+  position: absolute;
+  top: 0;
+  left: 2px;
+  width: 100%;
+  color: #fff;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: noise-after 2s infinite linear alternate-reverse;
+}
+.theme-default .hero__info .bio {
+  padding: 10px 30px;
+  font-size: 25px;
+  color: #9c9c9c;
+  border-left: 1px solid #9c9c9c;
+  margin-top: 50px;
+  margin-left: 10px;
 }/*# sourceMappingURL=style.css.map */

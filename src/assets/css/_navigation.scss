@@ -1,0 +1,154 @@
+.navigation {
+  @extend .full-width;
+  @extend .flex;
+
+  gap: 30px;
+  padding: 10px;
+  border: 3px solid #18041F;
+  border-radius: 50px;
+  margin-top: 30px;
+  padding-left: 50px;
+  background: rgba(#000, .3);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  position: relative;
+
+  &__item {
+    @extend .flex;
+    @extend .flex-ai-c;
+    @extend .flex-jc-c;
+
+    color: #fff;
+    padding: 0 15px;
+    height: 60px;
+    font-size: 13px;
+    gap: 5px;
+    cursor: pointer;
+    color: rgba(#fff, .6);
+    text-transform: capitalize;
+
+    &:not(:first-child) {
+      width: 100px;
+    }
+
+    &:first-child {
+      @extend .logo-font;
+      @extend .bold;
+
+      background: none;
+      gap: 5px;
+      font-size: 35px;
+      width: 250px;
+      color: #fff;
+      margin-right: 30px;
+
+      span {
+        color: #9006B9;
+        @extend .bold;
+        font-size: 35px;
+
+        i {
+          @extend .bold;
+          pointer-events: none;
+        }
+      }
+
+      .glitch-logo {
+        position: relative;
+        font-size: 30px;
+        font-weight: 700;
+        color: #fff;
+        z-index: 1;
+        font-family: 'Sora';
+
+        &:before {
+          content: 'Mario Jr';
+          position: absolute;
+          top: 0;
+          left: -2px;
+          width: 100%;
+          color: #fff;
+          overflow: hidden;
+          clip: rect(0, 900px, 0, 0);
+          animation: noise-before 3s infinite linear alternate-reverse;
+        }
+  
+        &:after {
+          content: 'Mario Jr';
+          position: absolute;
+          top: 0;
+          left: 2px;
+          width: 100%;
+          color: #fff;
+          overflow: hidden;
+          clip: rect(0, 900px, 0, 0);
+          animation: noise-after 2s infinite linear alternate-reverse;
+        }
+      }
+    }
+
+    &.active, &:hover {
+      @extend .bold;
+      color: #fff;
+    }
+  }
+
+  &__indicator {
+    @extend .flex;
+    @extend .flex-column;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50px;
+    z-index: -1;
+    left: 360px;
+    overflow: hidden;
+
+    @function hslColor($hue: 284, $saturation: 100%, $lightness: 50%) {
+      @return hsl($hue, $saturation, $lightness);
+    }
+
+    div {
+      width: 100px;
+      height: 2px;
+      transition: all 200ms ease-in-out;
+
+      @for $i from 1 through 25 {
+        &:nth-child(#{$i}) {
+          $color: (25 - $i) * 1% + 20%;
+          background: hsl(280 90% $color);
+          opacity: .6;
+        }
+      }
+
+      &:first-child {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+    }
+  }
+
+  &__btn {
+    flex: 1;
+    text-align: right;
+
+    button {
+      @extend .bold;
+
+      padding: 0 40px;
+      height: 100%;
+      font-size: 15px;
+      cursor: pointer;
+      border-radius: 40px;
+      background: linear-gradient(to top, hsl(280, 90%, 20%), hsl(280, 90%, 44%));
+      opacity: .6;
+      color: #fff;
+      text-transform: uppercase;
+
+      &:hover {
+        opacity: .8;
+      }
+    }
+  }
+}

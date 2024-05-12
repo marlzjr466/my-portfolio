@@ -13,7 +13,8 @@ export default defineConfig({
       '@utilities': fileURLToPath(new URL('./src/utilities', import.meta.url)),
       '@modals': fileURLToPath(new URL('./src/modals', import.meta.url)),
       '@constants': fileURLToPath(new URL('./src/constants', import.meta.url)),
-      '@components': fileURLToPath(new URL('./src/components', import.meta.url))
+      '@components': fileURLToPath(new URL('./src/components', import.meta.url)),
+      '@composable': fileURLToPath(new URL('./src/composable', import.meta.url))
     }
   },
   server: {
