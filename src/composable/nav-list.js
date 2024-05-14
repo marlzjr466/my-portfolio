@@ -1,22 +1,22 @@
 export default () => {
   const list = [
+    // {
+    //   name: 'Home',
+    //   route: '',
+    //   icon: 'fa-home'
+    // },
     {
-      name: 'home',
-      route: '',
-      icon: 'fa-home'
-    },
-    {
-      name: 'projects',
-      route: '',
-      icon: ''
-    },
-    {
-      name: 'skills',
+      name: 'Projects',
       route: '',
       icon: ''
     },
     {
-      name: 'about',
+      name: 'Skills',
+      route: '',
+      icon: ''
+    },
+    {
+      name: 'Profile',
       route: '',
       icon: ''
     }

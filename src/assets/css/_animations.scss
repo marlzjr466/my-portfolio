@@ -62,6 +62,16 @@
     transform: scaleX(1);
   }
 }
+
+@keyframes showMonitor {
+   from {
+      bottom: -145px;
+   }
+
+    to {
+      bottom: 0;
+    }
+}
   
 @keyframes hueRotate {
   0% {

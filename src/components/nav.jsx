@@ -45,7 +45,7 @@ function Nav () {
 
                   for (let j = 0; j < indicator.current.children.length; j++) {
                     indicator.current.children[j].style.marginLeft = `${left}px`,
-                    indicator.current.children[j].style.transitionDelay = `${Math.floor(Math.random() * (j + 300)) + 100}ms`
+                    indicator.current.children[j].style.transitionDelay = `${Math.floor(Math.random() * (j + 200)) + 100}ms`
                   }
 
                   const lis = document.querySelectorAll('.navigation__item')

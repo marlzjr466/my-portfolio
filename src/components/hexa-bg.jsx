@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react"
+import PropTypes from 'prop-types'
 
-function HexaBG () {
+function HexaBG (props) {
+  const monitor = props.monitor
   const cursor = useRef()
 
   useEffect(() => {
@@ -14,7 +16,7 @@ function HexaBG () {
         cursor.current.style.left = `${x}px`
       }
     )
-  }, [])
+  }, [monitor])
 
   const generateElement = count => {
     const html = []
@@ -31,7 +33,7 @@ function HexaBG () {
       <div className="hexa-bg">
         <div className="hexa-bg__cursor" ref={cursor}></div>
         {
-          Array(20).fill(20)
+          Array(40).fill(40)
             .map((count, i) => {
               return (
                 <div
@@ -46,6 +48,10 @@ function HexaBG () {
       </div>
     </>
   )
+}
+
+HexaBG.propTypes = {
+  monitor: PropTypes.object.isRequired
 }
 
 export default HexaBG

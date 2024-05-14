@@ -6,7 +6,8 @@ import { ReduxMeta, ReDuxMetaProvider } from '@opensource-dev/redux-meta'
 import '@assets/css/style.css'
 
 // views
-import App from '@views/app'
+// import App from '@views/app'
+import App3D from '@views/app-3d'
 
 // modules
 import app from '@modules/app'
@@ -19,7 +20,7 @@ window.$reduxMeta.useModules(app())
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ReDuxMetaProvider>
-      <App />
+      <App3D />
     </ReDuxMetaProvider>
   </React.StrictMode>
 )

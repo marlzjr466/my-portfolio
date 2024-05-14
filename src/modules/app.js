@@ -5,12 +5,17 @@ export default () => ({
   name: 'app',
 
   metaStates: {
-    mode: 'light'
+    mode: 'app-3d',
+    showModal: false
   },
 
   metaMutations: {
     SET_MODE: (state, { payload }) => {
       state.mode = payload
+    },
+
+    SET_SHOW_MODAL: (state, { payload }) => {
+      state.showModal = payload
     }
   },
 

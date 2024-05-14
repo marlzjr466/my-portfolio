@@ -58,7 +58,7 @@ ul, ol {
   list-style: none;
 }
 
-.flex, .theme-default .hero__info, .theme-default .hero, .theme-default .navigation__indicator, .theme-default .navigation__item, .theme-default .navigation, .theme-default {
+.flex, .modal-container__animation, .app-3d .scene__wall, .app-3d .scene__text, .hero__info, .hero, .theme-default .navigation__indicator, .theme-default .navigation__item, .theme-default .navigation, .theme-default {
   display: flex;
 }
 .flex-jc-sb {
@@ -79,7 +79,7 @@ ul, ol {
 .flex-ai-fe {
   align-items: flex-end;
 }
-.flex-column, .theme-default .hero__info, .theme-default .navigation__indicator, .theme-default {
+.flex-column, .modal-container__animation, .hero__info, .theme-default .navigation__indicator, .theme-default {
   flex-direction: column;
 }
 .flex-end {
@@ -92,12 +92,12 @@ ul, ol {
   background: #000;
 }
 
-.container, .theme-default, .hexa-bg {
+.container, .modal-container, .app-3d__bg, .app-3d, .theme-default, .hexa-bg {
   width: 100%;
   height: 100%;
 }
 
-.full-width, .theme-default .hero, .theme-default .navigation {
+.full-width, .hero, .theme-default .navigation {
   width: 100%;
 }
 
@@ -105,7 +105,7 @@ ul, ol {
   height: 100%;
 }
 
-.full-size {
+.full-size, .app-3d .scene__box--front, .app-3d .scene__box--back, .app-3d .scene__box--right, .app-3d .scene__box--left, .app-3d .scene__box--top, .app-3d .scene__box--bottom, .app-3d .scene__stage {
   height: 100%;
   width: 100%;
 }
@@ -149,7 +149,8 @@ ul, ol {
 
 .glitch-wrapper {
   width: 100%;
-  height: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 @keyframes jackInTheBox {
@@ -193,6 +194,14 @@ ul, ol {
   100% {
     opacity: 1;
     transform: scaleX(1);
+  }
+}
+@keyframes showMonitor {
+  from {
+    bottom: -145px;
+  }
+  to {
+    bottom: 0;
   }
 }
 @keyframes hueRotate {
@@ -339,26 +348,26 @@ ul, ol {
 }
 .hexa-bg__cursor {
   position: absolute;
-  width: calc(max(5vw, 7vh) * 4);
-  height: calc(max(5vw, 7vh) * 4);
+  width: calc(max(3vw, 5vh) * 4);
+  height: calc(max(3vw, 5vh) * 4);
   border-radius: 50%;
   animation: hueRotate 2s linear infinite;
   transform: translate(-50%, -50%);
 }
 .hexa-bg__row {
   display: inline-flex;
-  margin-top: calc(max(5vw, 7vh) * -0.32);
-  margin-left: calc(max(5vw, 7vh) * -0.5);
+  margin-top: calc(max(3vw, 5vh) * -0.32);
+  margin-left: calc(max(3vw, 5vh) * -0.5);
   pointer-events: none;
 }
 .hexa-bg__row:nth-child(even) {
-  margin-left: calc(max(5vw, 7vh) * 0.02);
+  margin-left: calc(max(3vw, 5vh) * 0.02);
 }
 .hexa-bg__row--hexagon {
   position: relative;
-  width: max(5vw, 7vh);
-  height: calc(max(5vw, 7vh) * 1.1);
-  margin: calc(max(5vw, 7vh) * 0.04) calc(max(5vw, 7vh) * 0.02);
+  width: max(3vw, 5vh);
+  height: calc(max(3vw, 5vh) * 1.1);
+  margin: calc(max(3vw, 5vh) * 0.04) calc(max(3vw, 5vh) * 0.02);
   -webkit-clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
           clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
   background: black;
@@ -583,20 +592,21 @@ body:hover .hexa-bg__cursor {
 .theme-default .navigation__btn button:hover {
   opacity: 0.8;
 }
-.theme-default .hero {
-  padding: 50px 50px 0 50px;
+
+.hero {
+  padding: 0;
   position: relative;
 }
-.theme-default .hero__info {
-  padding: 80px 0 0 70px;
-  gap: 20px;
+.hero__info {
+  padding: 70px 0 0 70px;
+  gap: 30px;
 }
-.theme-default .hero__info .position {
+.hero__info .position {
   text-transform: uppercase;
-  color: #9c9c9c;
-  font-size: 35px;
+  color: #c9c9c9;
+  font-size: 30px;
 }
-.theme-default .hero__info .glitch {
+.hero__info .glitch {
   position: relative;
   font-size: 80px;
   font-weight: 800;
@@ -605,8 +615,10 @@ body:hover .hexa-bg__cursor {
   letter-spacing: 2px;
   z-index: 1;
   font-family: "Sora";
+  opacity: 0.9;
+  text-shadow: 1px 1px 1px rgba(0, 189, 189, 0.1), 2px 1px 1px rgba(0, 189, 189, 0.1), 3px 1px 1px rgba(0, 189, 189, 0.1), 4px 1px 1px rgba(0, 189, 189, 0.1), 5px 1px 1px rgba(0, 189, 189, 0.1), 1px 18px 6px rgba(16, 16, 16, 0.4), 1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2), 1px 30px 60px rgba(16, 16, 16, 0.4);
 }
-.theme-default .hero__info .glitch:before {
+.hero__info .glitch:before {
   content: "Mario Jr \aLangomez";
   position: absolute;
   top: 0;
@@ -617,7 +629,7 @@ body:hover .hexa-bg__cursor {
   clip: rect(0, 900px, 0, 0);
   animation: noise-before 3s infinite linear alternate-reverse;
 }
-.theme-default .hero__info .glitch:after {
+.hero__info .glitch:after {
   content: "Mario Jr \aLangomez";
   position: absolute;
   top: 0;
@@ -628,11 +640,388 @@ body:hover .hexa-bg__cursor {
   clip: rect(0, 900px, 0, 0);
   animation: noise-after 2s infinite linear alternate-reverse;
 }
-.theme-default .hero__info .bio {
+.hero__info .bio {
   padding: 10px 30px;
   font-size: 25px;
-  color: #9c9c9c;
-  border-left: 1px solid #9c9c9c;
-  margin-top: 50px;
+  color: #c9c9c9;
+  border-left: 1px solid #c9c9c9;
+  margin-top: 20px;
   margin-left: 10px;
+}
+
+.app-3d {
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.app-3d__bg {
+  position: fixed;
+  opacity: 0.3;
+}
+.app-3d .scene {
+  width: 1200px;
+  height: 650px;
+  perspective: 2000px;
+  perspective-origin: 50% calc(50% - 2em);
+  opacity: 0.8;
+}
+.app-3d .scene__floor {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) rotateX(85deg) translateZ(-250px) scaleX(2) scaleY(2.5);
+  width: 1000px;
+  height: 1000px;
+  transform-style: preserve-3d;
+  overflow: hidden;
+  box-shadow: inset 20px 20px 50px rgb(0, 0, 0);
+  border: 3px solid rgba(0, 189, 189, 0.5);
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+.app-3d .scene__stage {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(85deg) translateZ(-340px);
+}
+.app-3d .scene__stage--base {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  box-shadow: 3px 3px 5px rgba(0, 189, 189, 0.5);
+  border: 1px solid rgba(0, 189, 189, 0.5);
+  background: radial-gradient(circle, hsl(195, 51%, 13%) 10%, #000 80%);
+}
+.app-3d .scene__stage--base:nth-child(1) {
+  transform: translateZ(1px);
+}
+.app-3d .scene__stage--base:nth-child(2) {
+  transform: translateZ(2px);
+}
+.app-3d .scene__stage--base:nth-child(3) {
+  transform: translateZ(3px);
+}
+.app-3d .scene__stage--base:nth-child(4) {
+  transform: translateZ(4px);
+}
+.app-3d .scene__stage--base:nth-child(5) {
+  transform: translateZ(5px);
+}
+.app-3d .scene__stage--base:nth-child(6) {
+  transform: translateZ(6px);
+}
+.app-3d .scene__stage--base:nth-child(7) {
+  transform: translateZ(7px);
+}
+.app-3d .scene__stage--base:nth-child(8) {
+  transform: translateZ(8px);
+}
+.app-3d .scene__stage--base:nth-child(9) {
+  transform: translateZ(9px);
+}
+.app-3d .scene__stage--base:nth-child(10) {
+  transform: translateZ(10px);
+}
+.app-3d .scene__stage--base:nth-child(11) {
+  transform: translateZ(11px);
+}
+.app-3d .scene__stage--base:nth-child(12) {
+  transform: translateZ(12px);
+}
+.app-3d .scene__stage--base:nth-child(13) {
+  transform: translateZ(13px);
+}
+.app-3d .scene__stage--base:nth-child(14) {
+  transform: translateZ(14px);
+}
+.app-3d .scene__stage--base:nth-child(15) {
+  transform: translateZ(15px);
+}
+.app-3d .scene__stage--base:nth-child(16) {
+  transform: translateZ(16px);
+}
+.app-3d .scene__stage--base:nth-child(17) {
+  transform: translateZ(17px);
+}
+.app-3d .scene__stage--base:nth-child(18) {
+  transform: translateZ(18px);
+}
+.app-3d .scene__stage--base:nth-child(19) {
+  transform: translateZ(19px);
+}
+.app-3d .scene__stage--base:nth-child(20) {
+  transform: translateZ(20px);
+}
+.app-3d .scene__stage--base:nth-child(21) {
+  transform: translateZ(21px);
+}
+.app-3d .scene__stage--base:nth-child(22) {
+  transform: translateZ(22px);
+}
+.app-3d .scene__stage--base:nth-child(23) {
+  transform: translateZ(23px);
+}
+.app-3d .scene__stage--base:nth-child(24) {
+  transform: translateZ(24px);
+}
+.app-3d .scene__stage--base:nth-child(25) {
+  transform: translateZ(25px);
+}
+.app-3d .scene__stage--base:nth-child(26) {
+  transform: translateZ(26px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(27) {
+  transform: translateZ(27px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(28) {
+  transform: translateZ(28px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(29) {
+  transform: translateZ(29px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(30) {
+  transform: translateZ(30px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(31) {
+  transform: translateZ(31px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(32) {
+  transform: translateZ(32px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(33) {
+  transform: translateZ(33px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(34) {
+  transform: translateZ(34px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(35) {
+  transform: translateZ(35px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(36) {
+  transform: translateZ(36px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(37) {
+  transform: translateZ(37px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(38) {
+  transform: translateZ(38px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(39) {
+  transform: translateZ(39px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(40) {
+  transform: translateZ(40px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(41) {
+  transform: translateZ(41px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(42) {
+  transform: translateZ(42px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(43) {
+  transform: translateZ(43px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(44) {
+  transform: translateZ(44px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(45) {
+  transform: translateZ(45px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(46) {
+  transform: translateZ(46px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(47) {
+  transform: translateZ(47px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(48) {
+  transform: translateZ(48px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(49) {
+  transform: translateZ(49px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(50) {
+  transform: translateZ(50px) scale(0.8);
+}
+.app-3d .scene__stage--base:nth-child(25), .app-3d .scene__stage--base:last-child {
+  box-shadow: 3px 3px 10px rgba(0, 189, 189, 0.5), inset 3px 3px 10px rgba(0, 189, 189, 0.5);
+}
+.app-3d .scene__stage--base:nth-child(25):before, .app-3d .scene__stage--base:last-child:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 10px dashed rgba(0, 189, 189, 0.3);
+  transform: scale(0.98);
+}
+.app-3d .scene__stage--base:nth-child(25):after, .app-3d .scene__stage--base:last-child:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  transform: scaleY(0.2) scaleX(0.6);
+  border: 1px solid rgba(0, 189, 189, 0.5);
+}
+.app-3d .scene__stage--base:first-child {
+  background: rgba(0, 0, 0, 0.3);
+  transform: scale(1.15);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border: none;
+  box-shadow: none;
+}
+.app-3d .scene__text {
+  gap: 10px;
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Khand";
+  font-weight: 800;
+  height: 80px;
+  overflow: hidden;
+}
+.app-3d .scene__text .glitch-wrapper {
+  position: relative;
+  height: 80px;
+  width: 100%;
+  padding: 0 30px;
+  box-shadow: inset 3px 3px 10px rgb(0, 189, 189);
+  border: 3px solid rgba(255, 255, 255, 0.7);
+  border-bottom: none;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0.5;
+  transition: all 200ms ease-in-out;
+  bottom: 0;
+  cursor: pointer;
+  animation: showMonitor 2s ease-in-out;
+}
+.app-3d .scene__text .glitch-wrapper:hover {
+  bottom: -10px;
+  opacity: 0.8;
+}
+.app-3d .scene__text .glitch {
+  position: relative;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+  letter-spacing: 2px;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: "Khand";
+  text-shadow: 1px 1px 1px rgba(0, 189, 189, 0.1), 2px 1px 1px rgba(0, 189, 189, 0.1), 3px 1px 1px rgba(0, 189, 189, 0.1), 4px 1px 1px rgba(0, 189, 189, 0.1), 5px 1px 1px rgba(0, 189, 189, 0.1), 1px 18px 6px rgba(16, 16, 16, 0.4), 1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2), 1px 30px 60px rgba(16, 16, 16, 0.4);
+}
+.app-3d .scene__text .glitch:before {
+  content: attr(data-glitch);
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 100%;
+  color: #fff;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: noise-before 3s infinite linear alternate-reverse;
+}
+.app-3d .scene__text .glitch:after {
+  content: attr(data-glitch);
+  position: absolute;
+  top: 0;
+  left: 2px;
+  width: 100%;
+  color: #fff;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: noise-after 2s infinite linear alternate-reverse;
+}
+.app-3d .scene__wall {
+  width: 100%;
+  gap: 10px;
+  height: 550px;
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-style: preserve-3d;
+  border: 2px solid rgba(0, 189, 189, 0.5);
+  border-radius: 15px;
+  box-shadow: 5px 5px 20px rgba(0, 189, 189, 0.5);
+  overflow: hidden;
+}
+.app-3d .scene__wall img {
+  position: absolute;
+  width: 100%;
+}
+.app-3d .scene__box {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  top: -350px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.7) rotateX(70deg) rotateZ(45deg);
+  transition: all 250ms ease-in-out;
+}
+.app-3d .scene__box--front, .app-3d .scene__box--back, .app-3d .scene__box--right, .app-3d .scene__box--left, .app-3d .scene__box--top, .app-3d .scene__box--bottom {
+  position: absolute;
+  background: hsla(184, 71%, 31%, 0.5);
+  box-shadow: inset 10px 10px 30px rgba(0, 0, 0, 0.5);
+  transition: all 250ms ease-in-out;
+}
+.app-3d .scene__box--front {
+  transform: translateZ(100px);
+}
+.app-3d .scene__box--back {
+  transform: translateZ(-100px);
+}
+.app-3d .scene__box--right {
+  transform: translateX(100px) rotateY(90deg);
+}
+.app-3d .scene__box--left {
+  transform: translateX(-100px) rotateY(-90deg);
+}
+.app-3d .scene__box--top {
+  transform: translateY(100px) rotateX(90deg);
+}
+.app-3d .scene__box--bottom {
+  transform: translateY(-100px) rotateX(-90deg);
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: grid;
+  place-items: center;
+}
+.modal-container__panel {
+  width: 70%;
+  height: 90%;
+  background: rgba(0, 189, 189, 0.3);
+  border: 2px solid rgba(0, 189, 189, 0.5);
+  position: relative;
+  box-shadow: 5px 5px 20px rgba(0, 189, 189, 0.3);
+  display: none;
+}
+.modal-container__panel:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: scaleY(0.95) scaleX(0.98);
+  border: 5px dashed rgba(0, 189, 189, 0.5);
+}
+.modal-container__animation {
+  position: absolute;
+  width: 100%;
+  height: 90%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.modal-container__animation--item {
+  width: 70%;
+  height: 0.5%;
+  background: rgba(0, 189, 189, 0.3);
+  margin-left: -70%;
+  transition: all 500ms ease-in-out;
 }/*# sourceMappingURL=style.css.map */

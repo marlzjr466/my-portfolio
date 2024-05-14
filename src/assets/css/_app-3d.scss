@@ -1,0 +1,271 @@
+.app-3d {
+  @extend .container;
+
+  // background: rgba(0,0,0,0.5);
+  // -webkit-backdrop-filter: blur(5px);
+  // backdrop-filter: blur(5px);
+
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+
+  &__bg {
+    @extend .container;
+
+    position: fixed;
+    opacity: .3;
+  }
+
+  .scene {
+    width: 1200px;
+    height: 650px;
+    perspective: 2000px;
+    perspective-origin: 50% calc(50% - 2em);
+    opacity: .8;
+    // transform: translate3d(42px, -62px, -135px);
+
+    &__floor {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%)
+        rotateX(85deg)
+        translateZ(-250px)
+        scaleX(2) 
+        scaleY(2.5);
+      width: 1000px;
+      height: 1000px;
+      transform-style: preserve-3d;
+      overflow: hidden;
+      // background: radial-gradient(#0000 90%, #000 100%),
+      //   repeating-conic-gradient(
+      //   from 45deg,
+      //   #111 0deg 90deg,
+      //   #222 90deg 180deg
+      // );
+      // background-size: 100%, 100px 100px;
+      box-shadow: inset 20px 20px 50px rgba(0,0,0,1);
+      border: 3px solid rgba(0, 189, 189, 0.5);
+      background: rgba(0,0,0,0.6);
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+    }
+
+    &__stage {
+      @extend .full-size;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: rotateX(85deg) translateZ(-340px);
+
+      &--base {
+        position: absolute;
+        inset: 0;
+        background: #000;
+        box-shadow: 3px 3px 5px rgba(0, 189, 189, 0.5);
+        border: 1px solid rgba(0, 189, 189, 0.5);
+        background: radial-gradient(circle, hsl(195, 51%, 13%) 10%, #000 80%);
+
+        @for $i from 1 through 50 {
+          &:nth-child(#{$i}) {
+            @if $i < 26 {
+              transform: translateZ(calc($i * 1px));
+            }
+
+            @else {
+              transform: translateZ(calc($i * 1px)) scale(.8);
+            }
+          }
+        }
+
+        &:nth-child(25), &:last-child {
+          box-shadow: 3px 3px 10px rgba(0, 189, 189, 0.5),
+            inset 3px 3px 10px rgba(0, 189, 189, 0.5);
+
+          &:before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 10px dashed rgba(0, 189, 189, 0.3);
+            transform: scale(.98);
+          }
+
+          &:after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: #000;
+            transform: scaleY(.2) scaleX(.6);
+            border: 1px solid rgba(0, 189, 189, 0.5);
+          }
+        }
+
+        &:first-child {
+          background: rgba(0,0,0,.3);
+          transform: scale(1.15);
+          -webkit-backdrop-filter: blur(15px);
+          backdrop-filter: blur(15px);
+          border: none;
+          box-shadow: none;
+        }
+      }
+    }
+
+    &__text {
+      @extend .flex;
+
+      gap: 10px;
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Khand';
+      font-weight: 800;
+      height: 80px;
+      overflow: hidden;
+
+      $textColor: #fff;
+      $textShadow: rgba(0, 189, 189, 0.1);
+
+      .glitch-wrapper {
+        position: relative;
+        height: 80px;
+        width: 100%;
+        padding: 0 30px;
+        box-shadow: inset 3px 3px 10px rgba(0, 189, 189, 1);
+        border: 3px solid rgba(#fff, .7);
+        border-bottom: none;
+        background: rgba(0,0,0,.5);
+        opacity: .5;
+        transition: all 200ms ease-in-out;
+        bottom: 0;
+        cursor: pointer;
+        animation: showMonitor 2s ease-in-out;
+
+        &:hover {
+          bottom: -10px;
+          opacity: .8;
+        }
+      }
+
+      .glitch {
+        position: relative;
+        font-size: 40px;
+        font-weight: 800;
+        line-height: 1;
+        color: $textColor;
+        letter-spacing: 2px;
+        z-index: 1;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: 'Khand';
+        text-shadow: 1px 1px 1px $textShadow,
+          2px 1px 1px $textShadow,
+          3px 1px 1px $textShadow,
+          4px 1px 1px $textShadow,
+          5px 1px 1px $textShadow,
+          1px 18px 6px rgba(16,16,16,0.4),
+          1px 22px 10px rgba(16,16,16,0.2),
+          1px 25px 35px rgba(16,16,16,0.2),
+          1px 30px 60px rgba(16,16,16,0.4);
+    
+        &:before {
+          content: attr(data-glitch);
+          position: absolute;
+          top: 0;
+          left: -2px;
+          width: 100%;
+          color: $textColor;
+          overflow: hidden;
+          clip: rect(0, 900px, 0, 0);
+          animation: noise-before 3s infinite linear alternate-reverse;
+        }
+  
+        &:after {
+          content: attr(data-glitch);
+          position: absolute;
+          top: 0;
+          left: 2px;
+          width: 100%;
+          color: $textColor;
+          overflow: hidden;
+          clip: rect(0, 900px, 0, 0);
+          animation: noise-after 2s infinite linear alternate-reverse;
+        }
+      }
+    }
+
+    &__wall {
+      @extend .flex;
+
+      width: calc(100%);
+      gap: 10px;
+      height: 550px;
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      transform-style: preserve-3d;
+      border: 2px solid rgba(0, 189, 189, 0.5);
+      border-radius: 15px;
+      box-shadow: 5px 5px 20px rgba(0, 189, 189, 0.5);
+      overflow: hidden;
+
+      img {
+        position: absolute;
+        width: 100%;
+      }
+    }
+
+    $boxSize: 200px;
+    $boxSide: calc($boxSize / 2);
+    $boxHover: $boxSide + 30;
+
+    &__box {
+      width: $boxSize;
+      height: $boxSize;
+      position: relative;
+      transform-style: preserve-3d;
+      top: -350px;
+      left: 50%;
+      transform: translateX(-50%) scale(.7) rotateX(70deg) rotateZ(45deg);
+      transition: all 250ms ease-in-out;
+
+      &--front,
+      &--back,
+      &--right,
+      &--left,
+      &--top,
+      &--bottom {
+        @extend .full-size;
+        position: absolute;
+        background: hsla(184, 71%, 31%, 0.5);
+        box-shadow: inset 10px 10px 30px rgba(0,0,0,.5);
+        transition: all 250ms ease-in-out;
+      }
+
+      &--front {
+        transform: translateZ($boxSide);
+        
+      }
+
+      &--back {
+        transform: translateZ(-$boxSide);
+      }
+
+      &--right {
+        transform: translateX($boxSide) rotateY(90deg);
+      }
+
+      &--left {
+        transform: translateX(-$boxSide) rotateY(-90deg);
+      }
+
+      &--top {
+        transform: translateY($boxSide) rotateX(90deg);
+      }
+
+      &--bottom {
+        transform: translateY(-$boxSide) rotateX(-90deg);
+      }
+    }
+  }
+}
