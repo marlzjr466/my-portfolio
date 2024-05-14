@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 
 // images
 import AI from '@assets/images/ai-bg.jpg'
